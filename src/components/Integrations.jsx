@@ -1,41 +1,33 @@
-import { SiCaldotcom, SiCalendly, SiStripe, SiTwilio } from 'react-icons/si'
-
-function RetellMark() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="2" y="10" width="3" height="4" rx="1.5" fill="#a78bfa" />
-      <rect x="7" y="7" width="3" height="10" rx="1.5" fill="#c4b5fd" />
-      <rect x="12" y="4" width="3" height="16" rx="1.5" fill="#ddd6fe" />
-      <rect x="17" y="7" width="3" height="10" rx="1.5" fill="#c4b5fd" />
-    </svg>
-  )
-}
-
 const integrations = [
   {
     name: 'Retell AI',
     desc: 'Voice AI Engine',
-    icon: <RetellMark />,
+    logo: 'https://www.retellai.com/favicon.ico',
+    bg: '#ffffff',
   },
   {
     name: 'Cal.com',
     desc: 'Scheduling',
-    icon: <SiCaldotcom size={20} color="#fff" />,
+    logo: 'https://cdn.simpleicons.org/caldotcom/ffffff',
+    bg: '#111111',
   },
   {
     name: 'Calendly',
     desc: 'Calendar Booking',
-    icon: <SiCalendly size={20} color="#006bff" />,
+    logo: 'https://cdn.simpleicons.org/calendly/006bff',
+    bg: '#ffffff',
   },
   {
     name: 'Stripe',
     desc: 'Payments',
-    icon: <SiStripe size={20} color="#635bff" />,
+    logo: 'https://cdn.simpleicons.org/stripe/635bff',
+    bg: '#ffffff',
   },
   {
     name: 'Twilio',
     desc: 'Telephony',
-    icon: <SiTwilio size={20} color="#f22f46" />,
+    logo: 'https://cdn.simpleicons.org/twilio/f22f46',
+    bg: '#ffffff',
   },
 ]
 
@@ -52,10 +44,10 @@ export default function Integrations() {
       </div>
 
       <div className="integrations-grid">
-        {integrations.map(({ name, desc, icon }) => (
+        {integrations.map(({ name, desc, logo, bg }) => (
           <div className="int-card" key={name}>
-            <div className="int-card__logo">
-              {icon}
+            <div className="int-card__logo" style={{ background: bg }}>
+              <img src={logo} alt={`${name} logo`} loading="lazy" />
             </div>
             <div>
               <div className="int-card__name">{name}</div>

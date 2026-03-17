@@ -1,6 +1,5 @@
 import WaitlistForm from './WaitlistForm'
 import FluidBackground from './FluidBackground'
-import { SiCaldotcom, SiCalendly, SiStripe, SiTwilio } from 'react-icons/si'
 
 const avatars = [
   'https://i.pravatar.cc/80?img=12',
@@ -8,6 +7,14 @@ const avatars = [
   'https://i.pravatar.cc/80?img=25',
   'https://i.pravatar.cc/80?img=32',
   'https://i.pravatar.cc/80?img=47',
+]
+
+const heroLogos = [
+  { name: 'Retell AI', logo: 'https://www.retellai.com/favicon.ico', bg: '#ffffff' },
+  { name: 'Cal.com', logo: 'https://cdn.simpleicons.org/caldotcom/ffffff', bg: '#111111' },
+  { name: 'Calendly', logo: 'https://cdn.simpleicons.org/calendly/006bff', bg: '#ffffff' },
+  { name: 'Stripe', logo: 'https://cdn.simpleicons.org/stripe/635bff', bg: '#ffffff' },
+  { name: 'Twilio', logo: 'https://cdn.simpleicons.org/twilio/f22f46', bg: '#ffffff' },
 ]
 
 export default function Hero() {
@@ -60,18 +67,11 @@ export default function Hero() {
       <div className="trust-bar reveal">
         <p className="trust-bar__label">Trusted by businesses worldwide</p>
         <div className="trust-bar__logos trust-bar__logos--icons">
-          <span className="logo-chip" aria-label="Retell AI">
-            <svg viewBox="0 0 24 24" fill="none">
-              <rect x="2" y="10" width="3" height="4" rx="1.5" fill="#a78bfa" />
-              <rect x="7" y="7" width="3" height="10" rx="1.5" fill="#c4b5fd" />
-              <rect x="12" y="4" width="3" height="16" rx="1.5" fill="#ddd6fe" />
-              <rect x="17" y="7" width="3" height="10" rx="1.5" fill="#c4b5fd" />
-            </svg>
-          </span>
-          <span className="logo-chip" aria-label="Cal.com"><SiCaldotcom size={17} /></span>
-          <span className="logo-chip" aria-label="Calendly"><SiCalendly size={17} color="#006bff" /></span>
-          <span className="logo-chip" aria-label="Stripe"><SiStripe size={17} color="#635bff" /></span>
-          <span className="logo-chip" aria-label="Twilio"><SiTwilio size={17} color="#f22f46" /></span>
+          {heroLogos.map((item) => (
+            <span className="logo-chip" aria-label={item.name} key={item.name} style={{ background: item.bg }}>
+              <img src={item.logo} alt={`${item.name} logo`} loading="lazy" />
+            </span>
+          ))}
         </div>
       </div>
     </section>
