@@ -1,33 +1,36 @@
+import { SiCaldotcom, SiCalendly, SiStripe, SiTwilio } from 'react-icons/si'
+import RetellLogo from '../assets/retell-logo-black.svg'
+
 const integrations = [
   {
     name: 'Retell AI',
     desc: 'Voice AI Engine',
-    logo: 'https://www.retellai.com/favicon.ico',
     bg: '#ffffff',
+    logo: RetellLogo,
   },
   {
     name: 'Cal.com',
     desc: 'Scheduling',
-    logo: 'https://cdn.simpleicons.org/caldotcom/ffffff',
-    bg: '#111111',
+    bg: '#101010',
+    icon: <SiCaldotcom size={20} color="#fff" />,
   },
   {
     name: 'Calendly',
     desc: 'Calendar Booking',
-    logo: 'https://cdn.simpleicons.org/calendly/006bff',
     bg: '#ffffff',
+    icon: <SiCalendly size={20} color="#006bff" />,
   },
   {
     name: 'Stripe',
     desc: 'Payments',
-    logo: 'https://cdn.simpleicons.org/stripe/635bff',
     bg: '#ffffff',
+    icon: <SiStripe size={20} color="#635bff" />,
   },
   {
     name: 'Twilio',
     desc: 'Telephony',
-    logo: 'https://cdn.simpleicons.org/twilio/f22f46',
     bg: '#ffffff',
+    icon: <SiTwilio size={20} color="#f22f46" />,
   },
 ]
 
@@ -44,10 +47,10 @@ export default function Integrations() {
       </div>
 
       <div className="integrations-grid">
-        {integrations.map(({ name, desc, logo, bg }) => (
+        {integrations.map(({ name, desc, icon, logo, bg }) => (
           <div className="int-card" key={name}>
             <div className="int-card__logo" style={{ background: bg }}>
-              <img src={logo} alt={`${name} logo`} loading="lazy" />
+              {logo ? <img src={logo} alt={`${name} logo`} loading="lazy" /> : icon}
             </div>
             <div>
               <div className="int-card__name">{name}</div>

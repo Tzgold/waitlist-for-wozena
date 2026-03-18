@@ -1,5 +1,7 @@
 import WaitlistForm from './WaitlistForm'
 import FluidBackground from './FluidBackground'
+import { SiCaldotcom, SiCalendly, SiStripe, SiTwilio } from 'react-icons/si'
+import RetellLogo from '../assets/retell-logo-black.svg'
 
 const avatars = [
   'https://i.pravatar.cc/80?img=12',
@@ -10,12 +12,21 @@ const avatars = [
 ]
 
 const heroLogos = [
-  { name: 'Retell AI', logo: 'https://www.retellai.com/favicon.ico', bg: '#ffffff' },
-  { name: 'Cal.com', logo: 'https://cdn.simpleicons.org/caldotcom/ffffff', bg: '#111111' },
-  { name: 'Calendly', logo: 'https://cdn.simpleicons.org/calendly/006bff', bg: '#ffffff' },
-  { name: 'Stripe', logo: 'https://cdn.simpleicons.org/stripe/635bff', bg: '#ffffff' },
-  { name: 'Twilio', logo: 'https://cdn.simpleicons.org/twilio/f22f46', bg: '#ffffff' },
+  { name: 'Retell AI', bg: '#ffffff', logo: RetellLogo },
+  { name: 'Cal.com', bg: '#101010', icon: <SiCaldotcom size={16} color="#ffffff" /> },
+  { name: 'Calendly', bg: '#ffffff', icon: <SiCalendly size={16} color="#006bff" /> },
+  { name: 'Stripe', bg: '#ffffff', icon: <SiStripe size={16} color="#635bff" /> },
+  { name: 'Twilio', bg: '#ffffff', icon: <SiTwilio size={16} color="#f22f46" /> },
 ]
+
+// Manually tuned to match the reference waveform silhouette:
+// clustered peaks, short gaps, and mirrored symmetry.
+const waveHalf = [
+  8, 16, 30, 48, 88, 152, 96, 54, 26, 14,
+  10, 28, 52, 74, 96, 128, 108, 84, 54, 30,
+]
+const centerBars = [18, 34, 58, 96, 142, 104, 66]
+const waveHeights = [...waveHalf, ...centerBars, ...[...waveHalf].reverse()]
 
 export default function Hero() {
   return (
@@ -27,6 +38,7 @@ export default function Hero() {
       <div className="hero__beams" aria-hidden="true">
         <div className="beam-cone" />
         <div className="beam-cone-halo" />
+        <div className="beam-corner-bloom" />
         <div className="beam-edge-glow" />
       </div>
 
@@ -69,10 +81,20 @@ export default function Hero() {
         <div className="trust-bar__logos trust-bar__logos--icons">
           {heroLogos.map((item) => (
             <span className="logo-chip" aria-label={item.name} key={item.name} style={{ background: item.bg }}>
-              <img src={item.logo} alt={`${item.name} logo`} loading="lazy" />
+              {item.logo ? <img src={item.logo} alt={`${item.name} logo`} loading="lazy" /> : item.icon}
             </span>
           ))}
         </div>
+      </div>
+
+      <div className="hero-wave" aria-hidden="true">
+        {waveHeights.map((h, i) => (
+          <span
+            key={`${h}-${i}`}
+            className={h <= 8 ? 'is-dot' : ''}
+            style={{ height: `${h}px`, '--i': i }}
+          />
+        ))}
       </div>
     </section>
   )

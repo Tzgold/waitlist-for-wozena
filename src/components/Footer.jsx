@@ -1,14 +1,15 @@
+import WozenaLogo from '../assets/wozena-logo.png'
+
 export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
     <footer className="footer">
       <a href="/" className="footer__logo">
-        <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
-          <path d="M14 6L7 10v8l7 4 7-4v-8L14 6z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" fill="none" />
-          <path d="M7 10l7 4 7-4M14 14v8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.6" />
-        </svg>
-        Wozena
+        <span className="footer__logo-mark">
+          <img src={WozenaLogo} alt="Wozena logo mark" />
+        </span>
+        <span>Wozena</span>
       </a>
 
       <p className="footer__copy">&copy; {year} Wozena Inc. All rights reserved.</p>
